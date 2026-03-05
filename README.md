@@ -52,7 +52,6 @@ The transformer weights are downloaded on the **first edit only** and cached by 
 | Diffusers | `diffusers` |
 | Accelerate | `accelerate` |
 | Pillow | `Pillow` |
-| bson | `bson` |
 | GPU | CUDA-capable, ≥ 60 GB VRAM recommended |
 
 Install Python dependencies:
