@@ -1,0 +1,12 @@
+name: "@harpreetsahota/qwen_image_edit"
+type: plugin
+author: Harpreet Sahota
+version: "1.0.0"
+description: "Chat-based iterative image editing panel using Qwen Image Edit models"
+fiftyone:
+  version: ">=0.22"
+js_bundle: dist/index.umd.js
+panels:
+  - qwen_image_edit_panel
+operators:
+  - save_edited_images
