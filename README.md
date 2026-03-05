@@ -6,6 +6,60 @@ A [FiftyOne](https://docs.voxel51.com) plugin that brings chat-based image editi
 
 Inference runs **entirely on your local GPU** using the [Qwen Image Edit 2511](https://huggingface.co/drbaph/Qwen-Image-Edit-2511-FP8) model in FP8 quantized form. No API keys or external services required.
 
+
+## Installation
+
+Download the plugin:
+
+```bash
+fiftyone plugins download https://github.com/harpreetsahota204/qwen_image_edit --overwrite
+```
+
+Set the operator timeout **before** launching FiftyOne. The default 600-second timeout is not enough for a cold-start model load (up to ~10 min on first run) or a long multi-step inference call (1–5 min per edit depending on steps and image count):
+
+```bash
+export FIFTYONE_OPERATOR_TIMEOUT=1800   # 30 minutes
+```
+
+Then launch the app:
+
+```python
+import fiftyone as fo
+import os
+
+os.environ["FIFTYONE_OPERATOR_TIMEOUT"] = "1800"
+
+dataset = fo.load_dataset("your-dataset")
+fo.launch_app(dataset)
+```
+
+Or from the shell:
+
+```bash
+export FIFTYONE_OPERATOR_TIMEOUT=1800
+fiftyone app launch
+```
+
+> **Important:** `FIFTYONE_OPERATOR_TIMEOUT` must be set in the same environment that runs the FiftyOne server, not just the Python session that opens the browser. Per-function timeout decorators from `fiftyone.operators.decorators` use Python's `signal` module and do not work in FiftyOne's operator worker threads — the environment variable is the only supported mechanism.
+
+---
+
+## Requirements
+
+| Requirement | Detail |
+|-------------|--------|
+| FiftyOne |  |
+| PyTorch | CUDA build (`torch`) |
+| Diffusers | `diffusers` |
+| Accelerate | `accelerate` |
+| Pillow | `Pillow` |
+| GPU | CUDA-capable, ≥ 80 GB VRAM recommended |
+
+Install Python dependencies:
+
+```bash
+pip install torch diffusers accelerate Pillow fiftyone
+```
 ---
 
 ## What it does
@@ -45,61 +99,7 @@ The transformer weights are downloaded on the **first edit only** and cached by 
 
 ---
 
-## Requirements
 
-| Requirement | Detail |
-|-------------|--------|
-| FiftyOne |  |
-| PyTorch | CUDA build (`torch`) |
-| Diffusers | `diffusers` |
-| Accelerate | `accelerate` |
-| Pillow | `Pillow` |
-| GPU | CUDA-capable, ≥ 80 GB VRAM recommended |
-
-Install Python dependencies:
-
-```bash
-pip install torch diffusers accelerate Pillow bson fiftyone
-```
-
----
-
-## Installation
-
-Download the plugin:
-
-```bash
-fiftyone plugins download https://github.com/harpreetsahota204/qwen_image_edit --overwrite
-```
-
-Set the operator timeout **before** launching FiftyOne. The default 600-second timeout is not enough for a cold-start model load (up to ~10 min on first run) or a long multi-step inference call (1–5 min per edit depending on steps and image count):
-
-```bash
-export FIFTYONE_OPERATOR_TIMEOUT=1800   # 30 minutes
-```
-
-Then launch the app:
-
-```python
-import fiftyone as fo
-import os
-
-os.environ["FIFTYONE_OPERATOR_TIMEOUT"] = "1800"
-
-dataset = fo.load_dataset("your-dataset")
-fo.launch_app(dataset)
-```
-
-Or from the shell:
-
-```bash
-export FIFTYONE_OPERATOR_TIMEOUT=1800
-fiftyone app launch
-```
-
-> **Important:** `FIFTYONE_OPERATOR_TIMEOUT` must be set in the same environment that runs the FiftyOne server, not just the Python session that opens the browser. Per-function timeout decorators from `fiftyone.operators.decorators` use Python's `signal` module and do not work in FiftyOne's operator worker threads — the environment variable is the only supported mechanism.
-
----
 
 ## First-run note
 
