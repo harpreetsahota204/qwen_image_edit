@@ -112,6 +112,20 @@ All subsequent edits in the same session skip steps 1 and 2 and go straight to i
 
 ---
 
+## Getting Started
+
+If you want to quickly test the plugin, you can use the FiftyOne quickstart dataset:
+
+```python
+import fiftyone as fo
+import fiftyone.zoo as foz
+
+dataset = foz.load_zoo_dataset("quickstart")
+session = fo.launch_app(dataset)
+```
+
+Alternatively, if you have your own dataset and want to test the plugin with your data, see the [FiftyOne documentation on importing datasets](https://docs.voxel51.com/user_guide/import_datasets.html) to learn how to load your data into FiftyOne.
+
 ## Usage
 
 1. Open a dataset in the FiftyOne app and click into any sample.
