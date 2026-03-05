@@ -1,6 +1,6 @@
 fiftyone
 torch
 Pillow
-bson
+pymongo
 diffusers
 accelerate

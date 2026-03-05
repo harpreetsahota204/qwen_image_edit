@@ -68,7 +68,7 @@ pip install torch diffusers accelerate Pillow bson fiftyone
 Download the plugin:
 
 ```bash
-fiftyone plugins download https://github.com/harpreetsahota204/qwen_image_edit_panel --overwrite
+fiftyone plugins download https://github.com/harpreetsahota204/qwen_image_edit --overwrite
 ```
 
 Set the operator timeout **before** launching FiftyOne. The default 600-second timeout is not enough for a cold-start model load (up to ~10 min on first run) or a long multi-step inference call (1–5 min per edit depending on steps and image count):
