@@ -70,7 +70,7 @@ const S = {
     fontSize: 11,
     color: "#777",
     flexShrink: 0,
-    minWidth: 110,
+    width: 120,
   },
   advancedInput: {
     flex: 1,
