@@ -1,5 +1,7 @@
 # Qwen Image Edit Panel
 
+![image](qwen_image_edit_panel.gif)
+
 A [FiftyOne](https://docs.voxel51.com) plugin that brings chat-based image editing directly into the sample modal. Write a prompt, see all generated results inline, iterate, and save your favourite edits back to your dataset — all without leaving the app.
 
 Inference runs **entirely on your local GPU** using the [Qwen Image Edit 2511](https://huggingface.co/drbaph/Qwen-Image-Edit-2511-FP8) model in FP8 quantized form. No API keys or external services required.
@@ -37,7 +39,7 @@ Open any sample in the FiftyOne modal and the **Qwen Image Edit** panel appears 
 | **Repo** | [`Qwen/Qwen-Image-Edit-2511`](https://huggingface.co/Qwen/Qwen-Image-Edit-2511) |
 | **Weights** | [`drbaph/Qwen-Image-Edit-2511-FP8`](https://huggingface.co/drbaph/Qwen-Image-Edit-2511-FP8) — FP8 E4M3FN quantized transformer, ~4 GB |
 | **Precision** | `torch.bfloat16` compute, `torch.float8_e4m3fn` storage |
-| **GPU** | CUDA-capable GPU with at least 16 GB VRAM recommended |
+| **GPU** | CUDA-capable GPU with at least 80 GB VRAM recommended |
 
 The transformer weights are downloaded on the **first edit only** and cached by HuggingFace Hub (`~/.cache/huggingface/`). All subsequent runs load directly from cache. The panel shows download and loading status live while you wait.
 
@@ -52,7 +54,7 @@ The transformer weights are downloaded on the **first edit only** and cached by 
 | Diffusers | `diffusers` |
 | Accelerate | `accelerate` |
 | Pillow | `Pillow` |
-| GPU | CUDA-capable, ≥ 60 GB VRAM recommended |
+| GPU | CUDA-capable, ≥ 80 GB VRAM recommended |
 
 Install Python dependencies:
 
